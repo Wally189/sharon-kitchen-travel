@@ -1,0 +1,13 @@
+{
+  "siteUrl": "http://localhost:3000",
+  "ownerName": "Sharon Kitchen",
+  "adminLabel": "Sharon Kitchen Site Admin",
+  "dashboardIntro": "Use this console to edit file-backed content and rebuild the static website without touching template code.",
+  "publishChecklist": [
+    "Confirm the final trading name",
+    "Confirm the public phone, email and address details",
+    "Upload any additional vehicle or event photography",
+    "Check the final service area wording before publishing"
+  ],
+  "systemNotes": "The public website stays static. Saving content updates JSON files and regenerates dist automatically."
+}

@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website Editor</title>
+    <link rel="stylesheet" href="/admin/static/admin.css">
+  </head>
+  <body class="theme-irish">
+    <header class="site-admin-header">
+      <div class="wrap topbar-shell">
+        <a class="admin-brand" href="/" target="_blank" rel="noreferrer">
+          <span class="brand-mark">SK</span>
+          <span class="brand-copy">
+            <strong id="dashboardTitle">Website Editor</strong>
+            <span id="dashboardIntro">Change website text or images and rebuild the static site.</span>
+          </span>
+        </a>
+        <div class="header-actions">
+          <span class="status-pill">
+            <span class="status-dot"></span>
+            <span id="buildStatusText">Loading build status...</span>
+          </span>
+          <button class="admin-btn admin-btn-secondary" type="button" id="rebuildSite">Rebuild site</button>
+          <a class="admin-btn admin-btn-secondary" href="/" target="_blank" rel="noreferrer">View site</a>
+          <a class="admin-btn admin-btn-secondary" href="https://www.waylight-atlantic.co.uk/contact.html" target="_blank" rel="noreferrer">Contact Waylight</a>
+          <form method="post" action="/logout">
+            <button class="admin-btn admin-btn-secondary" type="submit">Log out</button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap admin-main">
+      <section class="hero-card">
+        <div>
+          <p class="eyebrow">Website Editor</p>
+          <h1>Change text or images without touching code</h1>
+          <p class="lead">This editor only updates the public website. Save your changes and the static site is rebuilt automatically.</p>
+        </div>
+        <div class="status-grid">
+          <article class="status-card">
+            <span class="status-label">Last build</span>
+            <strong id="overviewBuildTime">-</strong>
+          </article>
+          <article class="status-card">
+            <span class="status-label">Status</span>
+            <strong id="overviewBuildStatus">-</strong>
+          </article>
+          <article class="status-card">
+            <span class="status-label">Services</span>
+            <strong id="metricServices">0</strong>
+          </article>
+          <article class="status-card">
+            <span class="status-label">Images</span>
+            <strong id="metricImages">0</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="editor-card help-card">
+        <details class="help-accordion">
+          <summary>
+            <span>
+              <strong>How to update this site</strong>
+              <small>Simple steps for text, images and colours</small>
+            </span>
+          </summary>
+          <div class="help-body">
+            <ol class="help-steps">
+              <li>Change the visible wording below for headings, services, questions or contact details.</li>
+              <li>Choose a site theme to switch the colour direction for both the public site and this editor.</li>
+              <li>To change a photo, click into an image field first, then upload a file or press <strong>Use image</strong> in the library.</li>
+              <li>Press <strong>Save website changes and rebuild</strong>, then open <strong>View site</strong> to check the live preview.</li>
+            </ol>
+            <p class="security-note" id="fallbackWarning" hidden>
+              <strong>Security note.</strong>
+              This admin is still using the fallback <code>admin</code> / <code>playtrix</code> login. Add a real <code>.env</code> file before any live use.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <div class="editor-layout">
+        <form id="siteForm" class="editor-stack">
+          <section class="editor-card">
+            <p class="eyebrow">Business</p>
+            <h2>Business details</h2>
+            <div class="grid-two">
+              <label class="field">
+                <span>Business name</span>
+                <input id="businessName" type="text" required>
+              </label>
+              <label class="field">
+                <span>Tagline</span>
+                <input id="tagline" type="text">
+              </label>
+            </div>
+            <fieldset class="theme-picker">
+              <legend>Style direction</legend>
+              <p class="helper-text">This changes the public site colours and the editor colours.</p>
+              <div class="theme-options">
+                <label class="theme-option" data-theme="irish">
+                  <input type="radio" name="siteTheme" value="irish">
+                  <span>Atlantic Clover</span>
+                </label>
+                <label class="theme-option" data-theme="british">
+                  <input type="radio" name="siteTheme" value="british">
+                  <span>Harbour Blue</span>
+                </label>
+                <label class="theme-option" data-theme="spanish">
+                  <input type="radio" name="siteTheme" value="spanish">
+                  <span>Seville Sun</span>
+                </label>
+                <label class="theme-option" data-theme="german">
+                  <input type="radio" name="siteTheme" value="german">
+                  <span>Midnight Gold</span>
+                </label>
+                <label class="theme-option" data-theme="polish">
+                  <input type="radio" name="siteTheme" value="polish">
+                  <span>Rose Linen</span>
+                </label>
+                <label class="theme-option" data-theme="italian">
+                  <input type="radio" name="siteTheme" value="italian">
+                  <span>Olive Piazza</span>
+                </label>
+              </div>
+            </fieldset>
+          </section>
+
+          <section class="editor-card">
+            <p class="eyebrow">Homepage</p>
+            <h2>Hero section</h2>
+            <label class="field">
+              <span>Small heading</span>
+              <input id="heroEyebrow" type="text">
+            </label>
+            <label class="field">
+              <span>Main heading</span>
+              <textarea id="heroTitle" rows="4"></textarea>
+            </label>
+            <label class="field">
+              <span>Intro text</span>
+              <textarea id="heroIntro" rows="5"></textarea>
+            </label>
+            <div class="grid-two">
+              <label class="field">
+                <span>Primary button text</span>
+                <input id="heroPrimaryLabel" type="text">
+              </label>
+              <label class="field">
+                <span>Secondary button text</span>
+                <input id="heroSecondaryLabel" type="text">
+              </label>
+            </div>
+            <div class="list-shell">
+              <div class="list-head">
+                <strong>Hero badges</strong>
+                <button class="admin-btn admin-btn-secondary small" type="button" id="addHeroBadge">Add badge</button>
+              </div>
+              <div id="heroBadgesList" class="simple-list"></div>
+            </div>
+          </section>
+
+          <section class="editor-card">
+            <p class="eyebrow">Services</p>
+            <h2>Service labels and cards</h2>
+            <div class="list-shell">
+              <div class="list-head">
+                <strong>Service ribbon</strong>
+                <button class="admin-btn admin-btn-secondary small" type="button" id="addServiceType">Add label</button>
+              </div>
+              <div id="serviceTypesList" class="simple-list"></div>
+            </div>
+            <div class="list-shell">
+              <div class="list-head">
+                <strong>Service cards</strong>
+                <button class="admin-btn admin-btn-secondary small" type="button" id="addService">Add service</button>
+              </div>
+              <div id="servicesList" class="object-list"></div>
+            </div>
+          </section>
+
+          <section class="editor-card">
+            <p class="eyebrow">About</p>
+            <h2>Story section</h2>
+            <label class="field">
+              <span>Story title</span>
+              <input id="storyTitle" type="text">
+            </label>
+            <label class="field">
+              <span>Story text</span>
+              <textarea id="storyBody" rows="5"></textarea>
+            </label>
+            <div class="grid-two">
+              <label class="field">
+                <span>Story image</span>
+                <input id="storyImage" type="text" list="imagePaths" data-image-input="true">
+              </label>
+            </div>
+            <div class="list-shell">
+              <div class="list-head">
+                <strong>Story highlights</strong>
+                <button class="admin-btn admin-btn-secondary small" type="button" id="addStoryHighlight">Add highlight</button>
+              </div>
+              <div id="storyHighlightsList" class="simple-list"></div>
+            </div>
+          </section>
+
+          <section class="editor-card">
+            <p class="eyebrow">Vehicle</p>
+            <h2>Vehicle section</h2>
+            <label class="field">
+              <span>Vehicle title</span>
+              <input id="vehicleTitle" type="text">
+            </label>
+            <label class="field">
+              <span>Vehicle text</span>
+              <textarea id="vehicleBody" rows="5"></textarea>
+            </label>
+            <div class="grid-two">
+              <label class="field">
+                <span>Vehicle image</span>
+                <input id="vehicleImage" type="text" list="imagePaths" data-image-input="true">
+              </label>
+            </div>
+            <div class="list-shell">
+              <div class="list-head">
+                <strong>Vehicle points</strong>
+                <button class="admin-btn admin-btn-secondary small" type="button" id="addVehicleBullet">Add point</button>
+              </div>
+              <div id="vehicleBulletsList" class="simple-list"></div>
+            </div>
+          </section>
+
+          <section class="editor-card">
+            <p class="eyebrow">Gallery</p>
+            <h2>Homepage images</h2>
+            <p class="helper-text">Select an image field first, then click "Use image" in the image library on the right.</p>
+            <div class="list-shell">
+              <div class="list-head">
+                <strong>Gallery items</strong>
+                <button class="admin-btn admin-btn-secondary small" type="button" id="addGalleryItem">Add image</button>
+              </div>
+              <div id="galleryList" class="object-list"></div>
+            </div>
+          </section>
+
+          <section class="editor-card">
+            <p class="eyebrow">FAQ</p>
+            <h2>Questions and answers</h2>
+            <div class="list-shell">
+              <div class="list-head">
+                <strong>FAQ items</strong>
+                <button class="admin-btn admin-btn-secondary small" type="button" id="addFaqItem">Add FAQ</button>
+              </div>
+              <div id="faqList" class="object-list"></div>
+            </div>
+          </section>
+
+          <section class="editor-card">
+            <p class="eyebrow">Contact</p>
+            <h2>Contact and footer</h2>
+            <div class="grid-two">
+              <label class="field">
+                <span>Phone number</span>
+                <input id="contactPhoneDisplay" type="text">
+              </label>
+              <label class="field">
+                <span>WhatsApp link</span>
+                <input id="contactWhatsAppLink" type="text">
+              </label>
+            </div>
+            <div class="grid-two">
+              <label class="field">
+                <span>Facebook link</span>
+                <input id="contactFacebookLink" type="text">
+              </label>
+              <label class="field">
+                <span>Email</span>
+                <input id="contactEmail" type="email">
+              </label>
+            </div>
+            <div class="grid-two">
+              <label class="field">
+                <span>Location</span>
+                <input id="contactAddressLabel" type="text">
+              </label>
+              <label class="field">
+                <span>Hours or note</span>
+                <input id="contactHours" type="text">
+              </label>
+            </div>
+            <label class="field">
+              <span>Location summary</span>
+              <textarea id="contactLocationSummary" rows="4"></textarea>
+            </label>
+            <label class="field">
+              <span>Footer notice</span>
+              <textarea id="footerNotice" rows="4"></textarea>
+            </label>
+            <label class="field">
+              <span>Footer legal location</span>
+              <input id="footerLocation" type="text">
+            </label>
+          </section>
+
+          <div class="save-bar">
+            <button class="admin-btn admin-btn-primary" type="submit">Save website changes and rebuild</button>
+          </div>
+
+          <datalist id="imagePaths"></datalist>
+        </form>
+
+        <aside class="editor-sidebar">
+          <section class="editor-card">
+            <p class="eyebrow">Upload</p>
+            <h2>Add a new image</h2>
+            <p class="helper-text">Upload an image here, then use it anywhere on the site.</p>
+            <form id="uploadForm" class="stack-form">
+              <label class="field">
+                <span>Image label</span>
+                <input id="uploadLabel" type="text" placeholder="Wedding coach exterior">
+              </label>
+              <label class="field">
+                <span>Note</span>
+                <textarea id="uploadNote" rows="3" placeholder="Optional note for the image library."></textarea>
+              </label>
+              <label class="field">
+                <span>Select image</span>
+                <input id="uploadFile" type="file" accept="image/*" required>
+              </label>
+              <button class="admin-btn admin-btn-primary" type="submit">Upload image and rebuild</button>
+            </form>
+          </section>
+
+          <section class="editor-card">
+            <p class="eyebrow">Image library</p>
+            <h2>Available images</h2>
+            <p class="helper-text">Click "Use image" to place a path into the selected image field, or copy the path.</p>
+            <div id="imageLibrary" class="library-list"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <div class="toast" id="toast" hidden></div>
+    <script src="/admin/static/admin.js" defer></script>
+  </body>
+</html>

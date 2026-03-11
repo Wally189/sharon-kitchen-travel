@@ -1,0 +1,38 @@
+[
+  {
+    "id": "welcome-image",
+    "label": "Welcome image",
+    "category": "Image",
+    "kind": "image",
+    "publicPath": "/assets/images/welcome.jpg",
+    "note": "Primary image now used across the site.",
+    "uploadedAt": "2026-03-11T08:47:57Z"
+  },
+  {
+    "id": "sharon-greg-image",
+    "label": "Sharon and Greg",
+    "category": "Image",
+    "kind": "image",
+    "publicPath": "/assets/images/SharonandGreg.png",
+    "note": "Owner profile image now used as the personal image placeholder across the site.",
+    "uploadedAt": "2026-03-11T08:45:28Z"
+  },
+  {
+    "id": "charabang-photo",
+    "label": "Charabang exterior",
+    "category": "Image",
+    "kind": "image",
+    "publicPath": "/assets/images/Charabang.png",
+    "note": "Previous travel poster image retained in the library.",
+    "uploadedAt": "2026-03-11T08:28:01Z"
+  },
+  {
+    "id": "seating-photo",
+    "label": "Interior seating",
+    "category": "Image",
+    "kind": "image",
+    "publicPath": "/assets/images/seating.png",
+    "note": "Previous interior image retained in the library.",
+    "uploadedAt": "2026-03-11T08:36:20Z"
+  }
+]

@@ -1,0 +1,137 @@
+{
+  "businessName": "Sharon Kitchen Travel",
+  "siteTitle": "Sharon Kitchen Travel | Private hire transport for weddings, airport runs and special occasions.",
+  "siteDescription": "Private hire transport for weddings, airport runs and special occasions.",
+  "tagline": "Private hire transport for weddings, airport runs and special occasions.",
+  "hero": {
+    "eyebrow": "Private Hire and Event Transport",
+    "title": "Dependable transport for celebration days, airport runs and organised group outings.",
+    "intro": "A straightforward, friendly private hire service for weddings, airport transfers, ladies that lunch, parties, stag do's, hen do's, and other planned vehicle runs.",
+    "primaryCtaLabel": "Check availability",
+    "primaryCtaHref": "#contact",
+    "secondaryCtaLabel": "Browse services",
+    "secondaryCtaHref": "#services",
+    "badges": [
+      "Weddings",
+      "Airport transfers",
+      "Parties",
+      "Group outings"
+    ]
+  },
+  "serviceTypes": [
+    "Weddings",
+    "Airport transfers",
+    "Ladies that lunch",
+    "Parties",
+    "Stag do's",
+    "Hen do's",
+    "Other vehicle runs"
+  ],
+  "services": [
+    {
+      "title": "Wedding transport",
+      "summary": "Arrival, collection and guest transport for ceremony days, receptions and planned wedding schedules.",
+      "anchorText": "For organised wedding-day travel"
+    },
+    {
+      "title": "Airport journeys",
+      "summary": "Pre-booked airport runs with practical pick-up timing and room for luggage planning.",
+      "anchorText": "For straightforward departures and returns"
+    },
+    {
+      "title": "Ladies that lunch",
+      "summary": "Comfortable transport for lunch outings, day trips and social plans that need reliable timing.",
+      "anchorText": "For daytime outings and meetups"
+    },
+    {
+      "title": "Party transport",
+      "summary": "Private hire for birthdays, evenings out and celebration bookings where group travel matters.",
+      "anchorText": "For nights out and planned events"
+    },
+    {
+      "title": "Stag and hen runs",
+      "summary": "Simple, pre-arranged transport to keep the group together for the start, middle or end of the day.",
+      "anchorText": "For stag and hen plans"
+    },
+    {
+      "title": "Flexible vehicle runs",
+      "summary": "Other pre-booked journeys can be arranged when you need a dependable driver and a clear plan.",
+      "anchorText": "For other planned trips"
+    }
+  ],
+  "story": {
+    "title": "Travel that feels organised from the first call",
+    "body": "Friendly, straightforward booking with clear timings for weddings, airport runs and social outings. Sharon Kitchen Travel keeps group journeys simple from the first enquiry to the final drop-off.",
+    "highlights": [
+      "Friendly booking process",
+      "Private hire for occasions and planned journeys",
+      "Clear timing for pick-up and drop-off"
+    ],
+    "image": "/assets/images/SharonandGreg.png",
+    "imageAlt": "Travel that feels organised from the first call"
+  },
+  "vehicle": {
+    "title": "Built around the journeys people actually book",
+    "body": "Private hire built for the trips people actually book: wedding parties, airport collections, day outings and evening events. The service focuses on comfort, punctuality and clear pricing.",
+    "bullets": [
+      "Ideal for planned group travel",
+      "Useful for occasion days and airport timing",
+      "Easy to update with real vehicle details later"
+    ],
+    "image": "/assets/images/welcome.jpg",
+    "imageAlt": "Built around the journeys people actually book"
+  },
+  "gallery": [
+    {
+      "image": "/assets/images/welcome.jpg",
+      "title": "Welcome aboard",
+      "caption": "Main service image showing the vehicle, contact number and the clear, direct offer.",
+      "alt": "Welcome aboard"
+    },
+    {
+      "image": "/assets/images/SharonandGreg.png",
+      "title": "Sharon and Greg",
+      "caption": "Owner profile image giving the site a more personal and grounded feel.",
+      "alt": "Sharon and Greg"
+    },
+    {
+      "image": "/assets/images/welcome.jpg",
+      "title": "Service poster",
+      "caption": "Repeat use of the main artwork to keep the public image set consistent until more photos are added.",
+      "alt": "Service poster"
+    },
+    {
+      "image": "/assets/images/SharonandGreg.png",
+      "title": "Driver profile",
+      "caption": "Additional use of the owner image to keep the site personal and recognisable.",
+      "alt": "Driver profile"
+    }
+  ],
+  "faq": [
+    {
+      "question": "What kinds of bookings do you cover?",
+      "answer": "The current service list includes weddings, airport transfers, lunch outings, parties, stag and hen events, and other planned vehicle runs. However, please contact us if you have any special requirements and we will do our best to accommodate them."
+    },
+    {
+      "question": "Can journeys be tailored to the day?",
+      "answer": "Yes absolutely - we can ensure pre-arranged transport where pick-up times, locations and event timing can be planned in advance."
+    },
+    {
+      "question": "Can I cancel at short notice?",
+      "answer": "Yes. If your plans change, get in touch and we can rearrange if necessary."
+    }
+  ],
+  "contact": {
+    "phoneDisplay": "07789 036649",
+    "phoneLink": "tel:07789036649",
+    "whatsappLink": "https://wa.me/447000000000",
+    "email": "skitchen@blueyonder.co.uk",
+    "addressLabel": "Bristol",
+    "locationSummary": "Based in Bristol for weddings, airport runs, parties and organised group outings, with 24/7 availability highlighted in the service artwork.",
+    "hours": "24/7 service, day or night"
+  },
+  "footer": {
+    "notice": "Private hire transport for occasions, airport journeys and organised group travel across Bristol.",
+    "legalLocation": "Bristol, United Kingdom"
+  }
+}

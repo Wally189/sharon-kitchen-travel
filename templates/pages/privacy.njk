@@ -1,0 +1,13 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <section class="legal-section">
+    <div class="container legal-shell">
+      <p class="eyebrow">Privacy</p>
+      <h1>Privacy Notice</h1>
+      <p>This brochure site is generated as a static website. Any contact details shown on the site are controlled through structured content files and can be updated without changing the public template.</p>
+      <p>If you make contact with {{ site.businessName }}, any booking or enquiry information should be handled only for the purpose of responding to your request and arranging the requested journey.</p>
+      <p>For privacy queries, use the published contact email: <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>.</p>
+    </div>
+  </section>
+{% endblock %}

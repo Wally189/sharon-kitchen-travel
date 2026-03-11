@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ pageDescription }}">
+    <link rel="stylesheet" href="/assets/css/site.css">
+  </head>
+  <body class="{% if bodyClass %}{{ bodyClass }} {% endif %}{{ site.themeClass | default('theme-irish') }}">
+    {% include "partials/site-header.njk" %}
+    <main id="main">
+      {% block content %}{% endblock %}
+    </main>
+    {% include "partials/site-footer.njk" %}
+    <script src="/assets/js/site.js" defer></script>
+  </body>
+</html>

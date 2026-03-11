@@ -1,0 +1,177 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">{{ site.hero.eyebrow }}</p>
+        <h1>{{ site.hero.title }}</h1>
+        <p class="hero-intro">{{ site.hero.intro }}</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="{{ site.hero.primaryCtaHref }}">{{ site.hero.primaryCtaLabel }}</a>
+          <a class="button button-secondary" href="{{ site.hero.secondaryCtaHref }}">{{ site.hero.secondaryCtaLabel }}</a>
+        </div>
+        <ul class="badge-row" aria-label="Core booking types">
+          {% for badge in site.hero.badges %}
+            <li>{{ badge }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="hero-visuals" aria-label="Business photography">
+        <figure class="frame frame-large motion-panel" data-float="20">
+          <img src="{{ site.vehicle.image }}" alt="{{ site.vehicle.imageAlt }}">
+        </figure>
+        <figure class="frame frame-small motion-panel" data-float="28">
+          <img src="{{ site.story.image }}" alt="{{ site.story.imageAlt }}">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-ribbon" aria-label="Occasions and booking types">
+    <div class="container">
+      <div class="service-ribbon">
+        {% for item in site.serviceTypes %}
+          <span>{{ item }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2>Transport built around real plans, not generic packages.</h2>
+        <p>Each booking can be shaped around a day out, a timed departure, or a celebration where getting everyone there matters.</p>
+      </div>
+      <div class="card-grid card-grid-services">
+        {% for service in site.services %}
+          <article class="service-card">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.summary }}</p>
+            <span>{{ service.anchorText }}</span>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-split" id="about">
+    <div class="container split-grid">
+      <article class="story-card">
+        <p class="eyebrow">About the service</p>
+        <h2>{{ site.story.title }}</h2>
+        <p>{{ site.story.body }}</p>
+        <ul class="tick-list">
+          {% for point in site.story.highlights %}
+            <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+      </article>
+      <figure class="story-image motion-panel" data-float="14">
+        <img src="{{ site.story.image }}" alt="{{ site.story.imageAlt }}">
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section-vehicle">
+    <div class="container split-grid reverse">
+      <figure class="story-image motion-panel" data-float="14">
+        <img src="{{ site.vehicle.image }}" alt="{{ site.vehicle.imageAlt }}">
+      </figure>
+      <article class="story-card story-card-accent">
+        <p class="eyebrow">Vehicle and planning</p>
+        <h2>{{ site.vehicle.title }}</h2>
+        <p>{{ site.vehicle.body }}</p>
+        <ul class="tick-list">
+          {% for point in site.vehicle.bullets %}
+            <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Images</p>
+        <h2>Current photo library</h2>
+        <p>A small selection of the current vehicle and owner imagery used across the site.</p>
+      </div>
+      <div class="gallery-grid">
+        {% for item in site.gallery %}
+          <figure class="gallery-card motion-panel" data-float="10">
+            <img src="{{ item.image }}" alt="{{ item.alt }}">
+            <figcaption>
+              <strong>{{ item.title }}</strong>
+              <span>{{ item.caption }}</span>
+            </figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-faq" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2>Simple answers for the main booking questions</h2>
+      </div>
+      <div class="faq-grid">
+        {% for item in site.faq %}
+          <details class="faq-item">
+            <summary>{{ item.question }}</summary>
+            <p>{{ item.answer }}</p>
+          </details>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-contact" id="contact">
+    <div class="container contact-shell">
+      <div class="contact-copy">
+        <p class="eyebrow">Contact</p>
+        <h2>Check availability for your date or journey.</h2>
+        <p>{{ site.contact.locationSummary }}</p>
+      </div>
+      <div class="contact-cards">
+        <article class="contact-card">
+          <span>Phone</span>
+          {% if site.contact.phoneHref %}
+            <a href="{{ site.contact.phoneHref }}">{{ site.contact.phoneDisplay }}</a>
+          {% else %}
+            <strong>{{ site.contact.phoneDisplay }}</strong>
+          {% endif %}
+        </article>
+        <article class="contact-card">
+          <span>Email</span>
+          <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
+        </article>
+        {% if site.contact.whatsappLink %}
+          <article class="contact-card">
+            <span>WhatsApp</span>
+            <a href="{{ site.contact.whatsappLink }}" target="_blank" rel="noreferrer">{{ site.contact.whatsappLink | replace("https://", "") | replace("http://", "") }}</a>
+          </article>
+        {% endif %}
+        {% if site.contact.facebookLink %}
+          <article class="contact-card">
+            <span>Facebook</span>
+            <a href="{{ site.contact.facebookLink }}" target="_blank" rel="noreferrer">{{ site.contact.facebookLink | replace("https://", "") | replace("http://", "") | replace("www.", "") }}</a>
+          </article>
+        {% endif %}
+        <article class="contact-card">
+          <span>Location</span>
+          <strong>{{ site.contact.addressLabel }}</strong>
+        </article>
+        <article class="contact-card">
+          <span>Hours</span>
+          <strong>{{ site.contact.hours }}</strong>
+        </article>
+      </div>
+    </div>
+  </section>
+{% endblock %}

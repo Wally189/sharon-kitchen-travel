@@ -1,0 +1,13 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <section class="legal-section">
+    <div class="container legal-shell">
+      <p class="eyebrow">GDPR</p>
+      <h1>Data Protection</h1>
+      <p>{{ site.businessName }} uses this website as a static brochure site. Content is published from structured files and does not rely on a live database-driven frontend.</p>
+      <p>If someone contacts the business to ask about a journey or booking, any personal information should be used only to respond to that enquiry, plan the requested travel and handle any necessary follow-up.</p>
+      <p>For any data or privacy request, use the published contact email: <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>.</p>
+    </div>
+  </section>
+{% endblock %}
