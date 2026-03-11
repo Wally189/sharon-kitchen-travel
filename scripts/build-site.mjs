@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
 const contentDir = path.join(rootDir, "content");
 const templatesDir = path.join(rootDir, "templates");
-const distDir = path.join(rootDir, "dist");
+const defaultOutputDir = path.join(rootDir, "dist");
 const allowedThemes = new Set(["irish", "british", "spanish", "german", "polish", "italian"]);
 
 async function readJson(fileName) {
@@ -39,20 +39,76 @@ async function ensureDirectory(target) {
 
 async function writePage(renderer, template, outputFile, context) {
   const html = renderer.render(template, context);
-  const outputPath = path.join(distDir, outputFile);
+  const outputPath = path.join(context.outputDir, outputFile);
   await ensureDirectory(path.dirname(outputPath));
   await fs.writeFile(outputPath, html, "utf8");
+}
+
+function normaliseBasePath(value) {
+  const trimmed = String(value || "").trim();
+
+  if (!trimmed || trimmed === "/") {
+    return "";
+  }
+
+  const withLeadingSlash = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+  return withLeadingSlash.replace(/\/+$/, "");
+}
+
+function prefixPublicPath(value, basePath) {
+  const raw = String(value || "");
+
+  if (!raw.startsWith("/")) {
+    return raw;
+  }
+
+  if (!basePath) {
+    return raw;
+  }
+
+  return raw === "/" ? `${basePath}/` : `${basePath}${raw}`;
+}
+
+function prefixSitePaths(value, basePath) {
+  if (Array.isArray(value)) {
+    return value.map((item) => prefixSitePaths(item, basePath));
+  }
+
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, entry]) => [key, prefixSitePaths(entry, basePath)])
+    );
+  }
+
+  if (typeof value === "string") {
+    return prefixPublicPath(value, basePath);
+  }
+
+  return value;
 }
 
 function withDerivedData(site) {
   const candidateTheme = String(site.theme || "irish").toLowerCase();
   const theme = allowedThemes.has(candidateTheme) ? candidateTheme : "irish";
+  const basePath = normaliseBasePath(process.env.BASE_PATH);
+  const publicSiteOnly = process.env.PUBLIC_SITE_ONLY === "1";
+  const prefixedSite = prefixSitePaths(site, basePath);
+
   return {
-    ...site,
+    ...prefixedSite,
     theme,
     themeClass: `theme-${theme}`,
+    basePath,
+    homeHref: prefixPublicPath("/", basePath),
+    gdprHref: prefixPublicPath("/gdpr.html", basePath),
+    privacyHref: prefixPublicPath("/privacy.html", basePath),
+    termsHref: prefixPublicPath("/terms.html", basePath),
+    loginHref: prefixPublicPath("/login", basePath),
+    assetCssHref: prefixPublicPath("/assets/css/site.css", basePath),
+    assetJsHref: prefixPublicPath("/assets/js/site.js", basePath),
+    showAdminLink: !publicSiteOnly,
     contact: {
-      ...site.contact,
+      ...prefixedSite.contact,
       phoneHref: site.contact.phoneLink || normalisePhoneHref(site.contact.phoneDisplay)
     }
   };
@@ -64,18 +120,22 @@ export async function buildSite() {
   const siteData = withDerivedData(site);
   const year = new Date().getFullYear();
   const generatedAt = new Date().toISOString();
+  const outputDir = process.env.OUTPUT_DIR
+    ? path.resolve(rootDir, process.env.OUTPUT_DIR)
+    : defaultOutputDir;
 
-  await ensureDirectory(distDir);
+  await ensureDirectory(outputDir);
 
   await Promise.all([
-    copyDirectory(path.join(rootDir, "src", "assets"), path.join(distDir, "assets")),
-    copyDirectory(path.join(contentDir, "media"), path.join(distDir, "assets", "images", "uploads")),
-    copyDirectory(path.join(contentDir, "files"), path.join(distDir, "assets", "files"))
+    copyDirectory(path.join(rootDir, "src", "assets"), path.join(outputDir, "assets")),
+    copyDirectory(path.join(contentDir, "media"), path.join(outputDir, "assets", "images", "uploads")),
+    copyDirectory(path.join(contentDir, "files"), path.join(outputDir, "assets", "files"))
   ]);
 
   const baseContext = {
     site: siteData,
-    year
+    year,
+    outputDir
   };
 
   await Promise.all([
@@ -105,7 +165,7 @@ export async function buildSite() {
   ]);
 
   await fs.writeFile(
-    path.join(distDir, "build-meta.json"),
+    path.join(outputDir, "build-meta.json"),
     JSON.stringify(
       {
         generatedAt,
@@ -117,9 +177,13 @@ export async function buildSite() {
     "utf8"
   );
 
+  if (process.env.PUBLIC_SITE_ONLY === "1") {
+    await fs.writeFile(path.join(outputDir, ".nojekyll"), "", "utf8");
+  }
+
   return {
     generatedAt,
-    distDir
+    distDir: outputDir
   };
 }
 
