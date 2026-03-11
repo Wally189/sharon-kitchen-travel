@@ -1,6 +1,6 @@
 # Sharon Kitchen Static Website
 
-Lightweight brochure-site build with a separate admin console.
+Lightweight brochure-site build with a static public landing page and a separate operator-only editor.
 
 ## Architecture
 
@@ -9,15 +9,29 @@ Lightweight brochure-site build with a separate admin console.
 - Admin: small Express app with login, file upload, and rebuild trigger
 - Templates: reusable Nunjucks files in `templates/`
 
-This keeps the main site static while still giving the owner a simple way to edit content.
+This keeps the main site static while still giving the operator a simple way to edit content.
 
 ## Commands
 
 ```bash
 npm install
 npm run build
+npm run build:public
+npm run build:pages
 npm run admin
 ```
+
+## Public deployment split
+
+There are now two separate outputs:
+
+- `npm run build:public`: public landing-page-only build for static hosts like Vercel
+- `npm run build:pages`: public landing-page-only build for GitHub Pages
+- `npm run build`: local preview build that still includes the discreet footer link to the local admin
+
+Static public deployments do not include a working `/admin` or `/login`. The real editor is local/private only.
+
+## Local operator editor
 
 Admin and local preview run from `http://localhost:3000`.
 
@@ -56,6 +70,8 @@ Before putting `/admin` on a live website:
 - set `NODE_ENV=production`
 - set `TRUST_PROXY=1` if the app sits behind a reverse proxy or platform load balancer
 - deploy somewhere with persistent writable storage, because the admin writes to `content/*.json` and `content/media/`
+
+If you only want a public landing page, do not deploy the admin at all. Use `npm run build:public` or `npm run build:pages` and host the static output only.
 
 The admin now includes:
 

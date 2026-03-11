@@ -1,6 +1,17 @@
 # Deployment Guide
 
-This project is not a static-only deploy. The public pages are generated into `dist/`, but the admin writes to `content/*.json` and `content/media/`, then rebuilds the site.
+## Public static deploy
+
+If you are deploying the public brochure site only:
+
+- Vercel: use `npm run build:public`
+- GitHub Pages: use `npm run build:pages`
+
+Those public builds are landing-page-only. They do not include a working `/admin`, `/login`, `/api`, or file-writing backend.
+
+## Full editor deployment
+
+This project is not a static-only deploy when you include the editor. The public pages are generated into `dist/`, but the admin writes to `content/*.json` and `content/media/`, then rebuilds the site.
 
 That means the live host must have:
 

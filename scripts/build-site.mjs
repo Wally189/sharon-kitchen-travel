@@ -103,9 +103,8 @@ function withDerivedData(site) {
   const theme = allowedThemes.has(candidateTheme) ? candidateTheme : "irish";
   const basePath = normaliseBasePath(process.env.BASE_PATH);
   const publicSiteOnly = process.env.PUBLIC_SITE_ONLY === "1";
-  const publicAdminUrl = String(process.env.PUBLIC_ADMIN_URL || "").trim();
   const prefixedSite = prefixSitePaths(site, basePath);
-  const adminLinkHref = publicAdminUrl || prefixPublicPath("/login", basePath);
+  const adminLinkHref = publicSiteOnly ? "" : prefixPublicPath("/login", basePath);
   const adminLinkIsExternal = /^https?:\/\//i.test(adminLinkHref);
 
   return {

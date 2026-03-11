@@ -1,5 +1,4 @@
-process.env.BASE_PATH ||= "/sharon-kitchen-travel";
-process.env.OUTPUT_DIR ||= "docs";
+process.env.OUTPUT_DIR ||= "dist";
 process.env.PUBLIC_SITE_ONLY ||= "1";
 
 const { buildSite } = await import("./build-site.mjs");
