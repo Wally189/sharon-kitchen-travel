@@ -37,6 +37,17 @@ async function ensureDirectory(target) {
   await fs.mkdir(target, { recursive: true });
 }
 
+async function copyDirectoryIfPresent(source, target) {
+  try {
+    await fs.access(source);
+  } catch {
+    await ensureDirectory(target);
+    return;
+  }
+
+  await copyDirectory(source, target);
+}
+
 async function writePage(renderer, template, outputFile, context) {
   const html = renderer.render(template, context);
   const outputPath = path.join(context.outputDir, outputFile);
@@ -128,8 +139,8 @@ export async function buildSite() {
 
   await Promise.all([
     copyDirectory(path.join(rootDir, "src", "assets"), path.join(outputDir, "assets")),
-    copyDirectory(path.join(contentDir, "media"), path.join(outputDir, "assets", "images", "uploads")),
-    copyDirectory(path.join(contentDir, "files"), path.join(outputDir, "assets", "files"))
+    copyDirectoryIfPresent(path.join(contentDir, "media"), path.join(outputDir, "assets", "images", "uploads")),
+    copyDirectoryIfPresent(path.join(contentDir, "files"), path.join(outputDir, "assets", "files"))
   ]);
 
   const baseContext = {
