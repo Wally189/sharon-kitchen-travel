@@ -405,6 +405,14 @@ app.post("/api/files/upload", requireAuth, requireCsrf, upload.single("file"), a
   }
 });
 
+app.get("/health", (req, res) => {
+  res.json({
+    ok: true,
+    status: "up",
+    time: new Date().toISOString()
+  });
+});
+
 app.use(express.static(path.join(rootDir, "dist")));
 
 app.use((req, res) => {

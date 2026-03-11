@@ -95,3 +95,14 @@ To repurpose this structure for another brochure site:
 4. Keep the same admin and build scripts
 
 The current setup is intentionally simple so it can be cloned for similar local-business sites.
+
+## Deployment
+
+Production deployment notes are in:
+
+- `docs/DEPLOYMENT.md`
+
+Use the examples in:
+
+- `deploy/systemd/`
+- `deploy/nginx/`
