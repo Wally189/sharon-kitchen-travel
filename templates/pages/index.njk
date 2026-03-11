@@ -1,6 +1,8 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
+  {% set primaryImageSrc = site.gallery[0].image if site.gallery and site.gallery[0] else site.vehicle.image %}
+  {% set primaryImageAlt = site.gallery[0].alt if site.gallery and site.gallery[0] else site.vehicle.imageAlt %}
   <section class="hero-section">
     <div class="container hero-grid">
       <div class="hero-copy">
@@ -19,7 +21,7 @@
       </div>
       <div class="hero-visuals" aria-label="Business photography">
         <figure class="frame frame-large motion-panel" data-float="20">
-          <img src="{{ site.vehicle.image }}" alt="{{ site.vehicle.imageAlt }}">
+          <img src="{{ primaryImageSrc }}" alt="{{ primaryImageAlt }}">
         </figure>
         <figure class="frame frame-small motion-panel" data-float="28">
           <img src="{{ site.story.image }}" alt="{{ site.story.imageAlt }}">
@@ -102,13 +104,15 @@
       </div>
       <div class="gallery-grid">
         {% for item in site.gallery %}
-          <figure class="gallery-card motion-panel" data-float="10">
-            <img src="{{ item.image }}" alt="{{ item.alt }}">
-            <figcaption>
-              <strong>{{ item.title }}</strong>
-              <span>{{ item.caption }}</span>
-            </figcaption>
-          </figure>
+          {% if not loop.first %}
+            <figure class="gallery-card motion-panel" data-float="10">
+              <img src="{{ item.image }}" alt="{{ item.alt }}">
+              <figcaption>
+                <strong>{{ item.title }}</strong>
+                <span>{{ item.caption }}</span>
+              </figcaption>
+            </figure>
+          {% endif %}
         {% endfor %}
       </div>
     </div>

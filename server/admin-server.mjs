@@ -222,11 +222,22 @@ function isAllowedImageUpload(file) {
   return allowedImageMimeTypes.has(file.mimetype) && allowedImageExtensions.has(extension);
 }
 
-const allowedThemes = new Set(["irish", "british", "spanish", "german", "polish", "italian"]);
+const allowedThemes = new Set([
+  "navy-white-gold",
+  "black-white-red",
+  "forest-cream-brown",
+  "blue-grey-teal",
+  "charcoal-soft-blue",
+  "deep-green-gold",
+  "purple-silver-white",
+  "blue-orange-white",
+  "grey-mint-white",
+  "burgundy-gold-cream"
+]);
 
 function normaliseTheme(value) {
   const theme = cleanString(value).toLowerCase();
-  return allowedThemes.has(theme) ? theme : "irish";
+  return allowedThemes.has(theme) ? theme : "forest-cream-brown";
 }
 
 function normaliseSite(payload) {

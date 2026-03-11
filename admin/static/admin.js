@@ -5,7 +5,18 @@ const state = {
   auth: null
 };
 
-const availableThemes = ["irish", "british", "spanish", "german", "polish", "italian"];
+const availableThemes = [
+  "navy-white-gold",
+  "black-white-red",
+  "forest-cream-brown",
+  "blue-grey-teal",
+  "charcoal-soft-blue",
+  "deep-green-gold",
+  "purple-silver-white",
+  "blue-orange-white",
+  "grey-mint-white",
+  "burgundy-gold-cream"
+];
 
 const simpleLists = {
   heroBadges: {
@@ -634,7 +645,7 @@ function setThemeValue(value) {
 }
 
 function normaliseTheme(value) {
-  return availableThemes.includes(value) ? value : "irish";
+  return availableThemes.includes(value) ? value : "forest-cream-brown";
 }
 
 function applyTheme(value) {

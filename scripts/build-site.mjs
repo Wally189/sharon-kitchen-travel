@@ -9,7 +9,18 @@ const rootDir = path.resolve(__dirname, "..");
 const contentDir = path.join(rootDir, "content");
 const templatesDir = path.join(rootDir, "templates");
 const defaultOutputDir = path.join(rootDir, "dist");
-const allowedThemes = new Set(["irish", "british", "spanish", "german", "polish", "italian"]);
+const allowedThemes = new Set([
+  "navy-white-gold",
+  "black-white-red",
+  "forest-cream-brown",
+  "blue-grey-teal",
+  "charcoal-soft-blue",
+  "deep-green-gold",
+  "purple-silver-white",
+  "blue-orange-white",
+  "grey-mint-white",
+  "burgundy-gold-cream"
+]);
 
 async function readJson(fileName) {
   const raw = await fs.readFile(path.join(contentDir, fileName), "utf8");
@@ -99,8 +110,8 @@ function prefixSitePaths(value, basePath) {
 }
 
 function withDerivedData(site) {
-  const candidateTheme = String(site.theme || "irish").toLowerCase();
-  const theme = allowedThemes.has(candidateTheme) ? candidateTheme : "irish";
+  const candidateTheme = String(site.theme || "forest-cream-brown").toLowerCase();
+  const theme = allowedThemes.has(candidateTheme) ? candidateTheme : "forest-cream-brown";
   const basePath = normaliseBasePath(process.env.BASE_PATH);
   const publicSiteOnly = process.env.PUBLIC_SITE_ONLY === "1";
   const prefixedSite = prefixSitePaths(site, basePath);

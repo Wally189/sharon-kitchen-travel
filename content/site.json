@@ -1,4 +1,5 @@
 {
+  "theme": "irish",
   "businessName": "Sharon Kitchen Travel",
   "siteTitle": "Sharon Kitchen Travel | Private hire transport for weddings, airport runs and special occasions.",
   "siteDescription": "Private hire transport for weddings, airport runs and special occasions.",
@@ -67,7 +68,7 @@
       "Private hire for occasions and planned journeys",
       "Clear timing for pick-up and drop-off"
     ],
-    "image": "/assets/images/SharonandGreg.png",
+    "image": "/assets/images/placeholders/plain-placeholder.svg",
     "imageAlt": "Travel that feels organised from the first call"
   },
   "vehicle": {
@@ -78,33 +79,33 @@
       "Useful for occasion days and airport timing",
       "Easy to update with real vehicle details later"
     ],
-    "image": "/assets/images/welcome.jpg",
+    "image": "/assets/images/placeholders/plain-placeholder.svg",
     "imageAlt": "Built around the journeys people actually book"
   },
   "gallery": [
     {
       "image": "/assets/images/welcome.jpg",
-      "title": "Welcome aboard",
-      "caption": "Main service image showing the vehicle, contact number and the clear, direct offer.",
-      "alt": "Welcome aboard"
+      "title": "Primary website image",
+      "caption": "Main service image for the landing page.",
+      "alt": "Primary website image"
     },
     {
-      "image": "/assets/images/SharonandGreg.png",
-      "title": "Sharon and Greg",
-      "caption": "Owner profile image giving the site a more personal and grounded feel.",
-      "alt": "Sharon and Greg"
+      "image": "/assets/images/placeholders/plain-placeholder.svg",
+      "title": "Placeholder image",
+      "caption": "Reserved for future photography.",
+      "alt": "Placeholder image"
     },
     {
-      "image": "/assets/images/welcome.jpg",
-      "title": "Service poster",
-      "caption": "Repeat use of the main artwork to keep the public image set consistent until more photos are added.",
-      "alt": "Service poster"
+      "image": "/assets/images/placeholders/plain-placeholder.svg",
+      "title": "Placeholder image",
+      "caption": "Reserved for future photography.",
+      "alt": "Placeholder image"
     },
     {
-      "image": "/assets/images/SharonandGreg.png",
-      "title": "Driver profile",
-      "caption": "Additional use of the owner image to keep the site personal and recognisable.",
-      "alt": "Driver profile"
+      "image": "/assets/images/placeholders/plain-placeholder.svg",
+      "title": "Placeholder image",
+      "caption": "Reserved for future photography.",
+      "alt": "Placeholder image"
     }
   ],
   "faq": [
@@ -125,6 +126,7 @@
     "phoneDisplay": "07789 036649",
     "phoneLink": "tel:07789036649",
     "whatsappLink": "https://wa.me/447000000000",
+    "facebookLink": "",
     "email": "skitchen@blueyonder.co.uk",
     "addressLabel": "Bristol",
     "locationSummary": "Based in Bristol for weddings, airport runs, parties and organised group outings, with 24/7 availability highlighted in the service artwork.",
