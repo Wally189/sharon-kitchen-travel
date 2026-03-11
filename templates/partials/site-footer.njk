@@ -2,7 +2,7 @@
   <div class="container footer-shell">
     <div>
       {% if site.showAdminLink %}
-        <a class="footer-admin-link" href="{{ site.loginHref }}" aria-label="Admin login for {{ site.businessName }}">{{ site.businessName }}</a>
+        <a class="footer-admin-link" href="{{ site.adminLinkHref }}" aria-label="Admin login for {{ site.businessName }}"{% if site.adminLinkIsExternal %} target="_blank" rel="noreferrer"{% endif %}>{{ site.businessName }}</a>
       {% else %}
         <span class="footer-admin-link footer-admin-link-static">{{ site.businessName }}</span>
       {% endif %}
